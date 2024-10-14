@@ -1,4 +1,6 @@
 import React from "react";
+import ChevronUpIcon from "src/icons/chevron-up.svg";
+import ChevronDownIcon from "src/icons/chevron-down.svg";
 
 type WordButtonProps = {
   text: string;
@@ -12,19 +14,23 @@ type WordButtonProps = {
   width?: string;
   height?: string;
   borderRadius?: string;
+  isDropDown?: boolean;
+  isWordDropDownOpen?: boolean;
 };
 
 function WordButton({
   text,
   fontSize = "16px",
-  backgroundColor = "#4CAF50",
-  hoverBackgroundColor = "#45a049",
+  backgroundColor = "transparent",
+  hoverBackgroundColor = "#DCDCDC",
   padding = "0",
   margin = "0",
   border,
   width = "fit-content",
   height,
   borderRadius = "0%",
+  isDropDown = false,
+  isWordDropDownOpen = false,
   onClick,
 }: WordButtonProps) {
   const wordButtonStyle: React.CSSProperties = {
@@ -52,6 +58,13 @@ function WordButton({
       onClick={onClick}
     >
       {text}
+      {isDropDown ? (
+        <img
+          src={isWordDropDownOpen ? ChevronUpIcon : ChevronDownIcon}
+          style={{ height: fontSize }}
+          alt="Chevron"
+        />
+      ) : null}
     </button>
   );
 }

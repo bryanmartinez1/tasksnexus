@@ -17,6 +17,7 @@ type IMGButtonProps = {
   width?: number;
   height?: string;
   borderRadius?: string;
+  hasToolTip?: boolean;
 };
 
 function IMGButton({
@@ -24,7 +25,7 @@ function IMGButton({
   src,
   toolTipText,
   width,
-  height,
+  height = "100%",
   onClick,
   fontSize = "16px",
   backgroundColor = "transparent",
@@ -33,6 +34,7 @@ function IMGButton({
   margin = "0",
   border = "none",
   borderRadius = "0",
+  hasToolTip = true,
 }: IMGButtonProps) {
   const imgButtonStyle: React.CSSProperties = {
     boxSizing: "border-box",
@@ -63,7 +65,7 @@ function IMGButton({
       >
         <img src={src} alt={alt} width={`${width}px`} height={height} />
       </button>
-      <Tooltip id={`${toolTipText}-id`} place="bottom-start" />
+      {hasToolTip && <Tooltip id={`${toolTipText}-id`} place="bottom-start" />}
     </>
   );
 }

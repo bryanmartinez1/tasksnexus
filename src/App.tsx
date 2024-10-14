@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home/Home";
-import Project from "./pages/project/Project";
 import Navbar from "src/components/navbar/Navbar";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
@@ -11,13 +10,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Project name="Bryan" />} />
+        <Route path="/project" element={<Home />} />
+        <Route path="/project/:projectID" element={<Home />} />
         <Route path="/work" element={<Home />} />
-        <Route path="/groups" element={<Project name="Bryan" />} />
+        <Route path="/work/:wordID" element={<Home />} />
+        <Route path="/groups" element={<Home />} />
+        <Route path="/groups/:groupID" element={<Home />} />
         <Route path="/help" element={<Home />} />
-        <Route path="/settings" element={<Project name="Bryan" />} />
+        <Route path="/help/:helpID" element={<Home />} />
+        <Route path="/settings" element={<Home />} />
         <Route path="/profile" element={<Home />} />
-        <Route path="/create" element={<Project name="Bryan" />} />
+        <Route path="/profile/profileID" element={<Home />} />
       </Routes>
     </div>
   );

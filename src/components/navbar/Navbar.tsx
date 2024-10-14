@@ -6,36 +6,13 @@ import profileIcon from "src/icons/user.svg";
 import helpIcon from "src/icons/help-circle.svg";
 import settingsIcon from "src/icons/settings.svg";
 import { useNavigate } from "react-router-dom";
-
-const homeButtonProperties = {
-  fontSize: "2rem",
-  backgroundColor: "transparent",
-  hoverBackgroundColor: "transparent",
-  border: "none",
-  padding: "5px",
-  borderRadius: "5px",
-  margin: "0px 10px 0px 10px",
-};
-
-const wordButtonProperties = {
-  fontSize: "16px",
-  backgroundColor: "transparent",
-  hoverBackgroundColor: "#DCDCDC",
-  border: "none",
-  margin: "0px 10px 0px 10px",
-  padding: "0px 10px 0px 10px",
-  height: "100%",
-  borderRadius: "5%",
-};
-
-const imgButtonProperties = {
-  borderRadius: "5%",
-  hoverBackgroundColor: "#DCDCDC",
-  width: 30,
-  height: "100%",
-  margin: "0px 10px 0px 10px",
-  padding: "0px 10px 0px 10px",
-};
+import WordDropDown from "src/components/dropDowns/wordDropDown/WordDropDown";
+import {
+  homeButtonProperties,
+  wordButtonProperties,
+  imgButtonProperties,
+} from "src/components/navbar/NavbarCSSPropertoies";
+import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -44,6 +21,7 @@ function Navbar() {
     () => navigate("/login"),
     () => navigate("/signup"),
   ];
+
   return (
     <div className="navbar">
       <WordButton
@@ -62,11 +40,6 @@ function Navbar() {
           text="Groups"
           onClick={() => navigate("/groups")}
         />
-        <WordButton
-          {...wordButtonProperties}
-          text="Create"
-          onClick={() => navigate("/create")}
-        />
         <IMGButton
           src={helpIcon}
           alt="Help Button"
@@ -81,12 +54,19 @@ function Navbar() {
           onClick={() => navigate("/settings")}
           {...imgButtonProperties}
         />
-        <IMGButton
+        <WordDropDown
+          title="Profile"
+          options={profileOptions}
+          optionsFunctions={profileFunctionOptions}
+          buttonProps={wordButtonProperties}
+        />
+        <ImgDropDown
           src={profileIcon}
-          alt="Profile Button"
+          alt="Profile"
           toolTipText="Profile"
-          onClick={() => navigate("/profile")}
-          {...imgButtonProperties}
+          buttonProps={imgButtonProperties}
+          options={profileOptions}
+          optionsFunctions={profileFunctionOptions}
         />
       </div>
     </div>
