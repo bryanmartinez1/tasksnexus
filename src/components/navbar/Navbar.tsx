@@ -1,12 +1,9 @@
-import React from "react";
-import "./navbar.css";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import WordButton from "src/components/buttons/wordButton/WordButton";
 import IMGButton from "src/components/buttons/imgButton/ImgButton";
 import profileIcon from "src/icons/user.svg";
 import helpIcon from "src/icons/help-circle.svg";
-import settingsIcon from "src/icons/settings.svg";
-import { useNavigate } from "react-router-dom";
-import WordDropDown from "src/components/dropDowns/wordDropDown/WordDropDown";
 import {
   homeButtonProperties,
   wordButtonProperties,
@@ -14,18 +11,28 @@ import {
 } from "src/components/navbar/NavbarCSSPropertoies";
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 
+import "./navbar.css";
+
 function Navbar() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const profileOptions = ["Log In", "Sign Up"];
   const profileFunctionOptions = [
     () => navigate("/login"),
     () => navigate("/signup"),
   ];
+  const loggedInOptions = ["Profile", "Settings", "Log Out"];
+  const loggedInFunctionOptions = [
+    () => navigate("/profile/"),
+    () => navigate("/settings"),
+    () => navigate("/logout"),
+  ];
+  useEffect(() => {}, []);
 
   return (
     <div className="navbar">
       <WordButton
-        text="Project Nexus"
+        text="Tasks Nexus"
         onClick={() => navigate("/")}
         {...homeButtonProperties}
       />
@@ -47,26 +54,15 @@ function Navbar() {
           onClick={() => navigate("/help")}
           {...imgButtonProperties}
         />
-        <IMGButton
-          src={settingsIcon}
-          alt="Settings Button"
-          toolTipText="Settings"
-          onClick={() => navigate("/settings")}
-          {...imgButtonProperties}
-        />
-        <WordDropDown
-          title="Profile"
-          options={profileOptions}
-          optionsFunctions={profileFunctionOptions}
-          buttonProps={wordButtonProperties}
-        />
         <ImgDropDown
           src={profileIcon}
           alt="Profile"
           toolTipText="Profile"
           buttonProps={imgButtonProperties}
-          options={profileOptions}
-          optionsFunctions={profileFunctionOptions}
+          options={isLoggedIn ? loggedInOptions : profileOptions}
+          optionsFunctions={
+            isLoggedIn ? loggedInFunctionOptions : profileFunctionOptions
+          }
         />
       </div>
     </div>
