@@ -10,24 +10,27 @@ import {
   imgButtonProperties,
 } from "src/components/navbar/NavbarCSSPropertoies";
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
+import MenuIcon from "src/icons/menu.svg";
 
 import "./navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const profileOptions = ["Log In", "Sign Up"];
-  const profileFunctionOptions = [
-    () => navigate("/login"),
-    () => navigate("/signup"),
-  ];
-  const loggedInOptions = ["Profile", "Settings", "Log Out"];
-  const loggedInFunctionOptions = [
+  const profileOptions = isLoggedIn ?  ["Profile", "Settings", "Log Out"]: ["Log In", "Sign Up"];
+  const profileFunctions = isLoggedIn ? [
     () => navigate("/profile/"),
     () => navigate("/settings"),
     () => navigate("/logout"),
+  ]: [
+    () => navigate("/login"),
+    () => navigate("/signup"),
   ];
+
   useEffect(() => {}, []);
+
+  const allNavOptions = ['My Work', 'Groups', 'Help', ...profileOptions];
+  const allNavFunctions = [() => navigate("/work"), () => navigate("/groups"), () => navigate("/help"), ...profileFunctions];
 
   return (
     <div className="navbar">
@@ -59,11 +62,15 @@ function Navbar() {
           alt="Profile"
           toolTipText="Profile"
           buttonProps={imgButtonProperties}
-          options={isLoggedIn ? loggedInOptions : profileOptions}
-          optionsFunctions={
-            isLoggedIn ? loggedInFunctionOptions : profileFunctionOptions
-          }
+          options={profileOptions}
+          optionsFunctions={profileFunctions}
         />
+        <ImgDropDown src={MenuIcon}
+          alt="Menu"
+          toolTipText="Menu"
+          buttonProps={imgButtonProperties}
+          options={allNavOptions}
+          optionsFunctions={allNavFunctions}/>
       </div>
     </div>
   );
