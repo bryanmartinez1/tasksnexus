@@ -67,7 +67,11 @@ function ImgDropDown({
       {isDropDownOpen && (
         <div className="img-dd-dropdown-content">
           {options.map((option, index) => (
-            <p className="ddPara" onClick={() => optionSelect(index)}>
+            <p
+              className="ddPara"
+              onClick={() => optionSelect(index)}
+              key={index}
+            >
               {option}
             </p>
           ))}

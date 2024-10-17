@@ -18,7 +18,7 @@ import "./navbar.css";
 function Navbar() {
   const navigate = useNavigate();
   const [navBarWidth, setNavbarWidth] = useState(window.innerWidth);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const profileOptions = isLoggedIn
     ? [routes.profile.name, routes.settings.name, logOut.name]
     : [routes.logIn.name, routes.signUp.name];

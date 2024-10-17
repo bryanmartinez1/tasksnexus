@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "src/components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import { routes } from "src/components/appConstants";
+import LogIn from "src/pages/auth/LogIn";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path={routes.profile.routeParameter} element={<Home />} />
         <Route path={routes.settings.route} element={<Home />} />
         <Route path={routes.signUp.route} element={<Home />} />
-        <Route path={routes.logIn.route} element={<Home />} />
+        <Route path={routes.logIn.route} element={<LogIn />} />
       </Routes>
     </div>
   );
