@@ -15,7 +15,7 @@ export const routes = {
   },
 
   work: {
-    name: "My Work",
+    name: "Work",
     route: "/work",
     routeParameter: "/work/:workID",
   },

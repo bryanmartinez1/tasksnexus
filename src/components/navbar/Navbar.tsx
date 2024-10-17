@@ -17,8 +17,8 @@ import "./navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
-  const [navBarWidth, setNavbarWidth] = useState(window.innerWidth);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [navBarWidth, setNavbarWidth] = useState<number>(window.innerWidth);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const profileOptions = isLoggedIn
     ? [routes.profile.name, routes.settings.name, logOut.name]
     : [routes.logIn.name, routes.signUp.name];
@@ -54,6 +54,7 @@ function Navbar() {
     () => navigate(routes.help.route),
     ...profileFunctions,
   ];
+
   const menu: string = "Menu";
 
   return (

@@ -17,7 +17,7 @@ function WordDropDown({
   optionsFunctions,
   height = "100%",
 }: WordDropDownProps) {
-  const [isDropDownOpen, setDropDownOpen] = useState(false);
+  const [isDropDownOpen, setDropDownOpen] = useState<boolean>(false);
 
   const toggleDropDown = () => {
     setDropDownOpen(!isDropDownOpen);

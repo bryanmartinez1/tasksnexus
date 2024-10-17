@@ -21,7 +21,7 @@ function ImgDropDown({
   toolTipText,
   height = "100%",
 }: ImgDropDownProps) {
-  const [isDropDownOpen, setDropDownOpen] = useState(false);
+  const [isDropDownOpen, setDropDownOpen] = useState<boolean>(false);
 
   const toggleDropDown = () => {
     setDropDownOpen(!isDropDownOpen);
