@@ -11,67 +11,96 @@ import {
 } from "src/components/navbar/NavbarCSSPropertoies";
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 import MenuIcon from "src/icons/menu.svg";
+import { routes, logOut, sitename } from "src/components/appConstants";
 
 import "./navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const profileOptions = isLoggedIn ?  ["Profile", "Settings", "Log Out"]: ["Log In", "Sign Up"];
-  const profileFunctions = isLoggedIn ? [
-    () => navigate("/profile/"),
-    () => navigate("/settings"),
-    () => navigate("/logout"),
-  ]: [
-    () => navigate("/login"),
-    () => navigate("/signup"),
+  const [navBarWidth, setNavbarWidth] = useState(window.innerWidth);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const profileOptions = isLoggedIn
+    ? [routes.profile.name, routes.settings.name, logOut.name]
+    : [routes.logIn.name, routes.signUp.name];
+  const profileFunctions = isLoggedIn
+    ? [
+        () => navigate(routes.profile.route),
+        () => navigate(routes.settings.route),
+        () => navigate("/logout"),
+      ]
+    : [() => navigate(routes.logIn.route), () => navigate(routes.signUp.route)];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setNavbarWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const allNavOptions = [
+    routes.work.name,
+    routes.groups.name,
+    routes.help.name,
+    ...profileOptions,
   ];
-
-  useEffect(() => {}, []);
-
-  const allNavOptions = ['My Work', 'Groups', 'Help', ...profileOptions];
-  const allNavFunctions = [() => navigate("/work"), () => navigate("/groups"), () => navigate("/help"), ...profileFunctions];
+  const allNavFunctions = [
+    () => navigate(routes.work.route),
+    () => navigate(routes.groups.route),
+    () => navigate(routes.help.route),
+    ...profileFunctions,
+  ];
+  const menu: string = "Menu";
 
   return (
     <div className="navbar">
       <WordButton
-        text="Tasks Nexus"
-        onClick={() => navigate("/")}
+        text={navBarWidth >= 300 ? sitename.longName : sitename.shortName}
+        onClick={() => navigate(routes.home.route)}
         {...homeButtonProperties}
       />
-      <div className="navbar-button-groups">
-        <WordButton
-          {...wordButtonProperties}
-          text="My Work"
-          onClick={() => navigate("/work")}
-        />
-        <WordButton
-          {...wordButtonProperties}
-          text="Groups"
-          onClick={() => navigate("/groups")}
-        />
-        <IMGButton
-          src={helpIcon}
-          alt="Help Button"
-          toolTipText="Help"
-          onClick={() => navigate("/help")}
-          {...imgButtonProperties}
-        />
+      {navBarWidth >= 550 ? (
+        <div className="navbar-button-groups">
+          <WordButton
+            {...wordButtonProperties}
+            text={routes.work.name}
+            onClick={() => navigate(routes.work.route)}
+          />
+          <WordButton
+            {...wordButtonProperties}
+            text={routes.groups.name}
+            onClick={() => navigate(routes.groups.route)}
+          />
+          <IMGButton
+            src={helpIcon}
+            alt={routes.help.name}
+            toolTipText={routes.help.name}
+            onClick={() => navigate(routes.help.route)}
+            {...imgButtonProperties}
+          />
+          <ImgDropDown
+            src={profileIcon}
+            alt={routes.profile.name}
+            toolTipText={routes.profile.name}
+            buttonProps={imgButtonProperties}
+            options={profileOptions}
+            optionsFunctions={profileFunctions}
+          />
+        </div>
+      ) : (
         <ImgDropDown
-          src={profileIcon}
-          alt="Profile"
-          toolTipText="Profile"
-          buttonProps={imgButtonProperties}
-          options={profileOptions}
-          optionsFunctions={profileFunctions}
-        />
-        <ImgDropDown src={MenuIcon}
-          alt="Menu"
-          toolTipText="Menu"
+          src={MenuIcon}
+          alt={menu}
+          toolTipText={menu}
           buttonProps={imgButtonProperties}
           options={allNavOptions}
-          optionsFunctions={allNavFunctions}/>
-      </div>
+          optionsFunctions={allNavFunctions}
+        />
+      )}
     </div>
   );
 }
