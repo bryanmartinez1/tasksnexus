@@ -29,10 +29,12 @@ function Navbar() {
   const [openSignUpModal, setSignUpModal] = useState<boolean>(false);
 
   const toggleLogInModal = () => {
+    setSignUpModal(false);
     setLogInModal(!openLogInModal);
   };
 
   const toggleSignUpModal = () => {
+    setLogInModal(false);
     setSignUpModal(!openSignUpModal);
   };
 
