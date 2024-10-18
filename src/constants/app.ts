@@ -48,7 +48,3 @@ export const routes = {
     route: "/login",
   },
 };
-
-export const logOut = {
-  name: "Log Out",
-};

@@ -8,27 +8,37 @@ import {
   homeButtonProperties,
   wordButtonProperties,
   imgButtonProperties,
-} from "src/components/navbar/NavbarCSSPropertoies";
+  modalProperties,
+} from "src/constants/cssProperties";
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 import MenuIcon from "src/icons/menu.svg";
-import { routes, logOut, sitename } from "src/components/appConstants";
+import { routes, sitename } from "src/constants/app";
+import { auth } from "src/constants/auth";
+import Modal from "src/components/modal/Modal";
 
 import "./navbar.css";
+import LogIn from "src/pages/auth/LogIn";
+import SignUp from "src/pages/auth/SignUp";
 
 function Navbar() {
   const navigate = useNavigate();
   const [navBarWidth, setNavbarWidth] = useState<number>(window.innerWidth);
+  // eslint-disable-next-line
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const profileOptions = isLoggedIn
-    ? [routes.profile.name, routes.settings.name, logOut.name]
-    : [routes.logIn.name, routes.signUp.name];
-  const profileFunctions = isLoggedIn
-    ? [
-        () => navigate(routes.profile.route),
-        () => navigate(routes.settings.route),
-        () => navigate("/logout"),
-      ]
-    : [() => navigate(routes.logIn.route), () => navigate(routes.signUp.route)];
+  const [openLogInModal, setLogInModal] = useState<boolean>(false);
+  const [openSignUpModal, setSignUpModal] = useState<boolean>(false);
+
+  const toggleLogInModal = () => {
+    setLogInModal(!openLogInModal);
+  };
+
+  const toggleSignUpModal = () => {
+    setSignUpModal(!openSignUpModal);
+  };
+
+  const logOut = () => {
+    alert("Log Out");
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,13 +52,25 @@ function Navbar() {
     };
   }, []);
 
-  const allNavOptions = [
+  const profileOptions = isLoggedIn
+    ? [routes.profile.name, routes.settings.name, logOut.name]
+    : [auth.logIn.name, auth.signUp.name];
+  const profileFunctions = isLoggedIn
+    ? [
+        () => navigate(routes.profile.route),
+        () => navigate(routes.settings.route),
+        () => logOut(),
+      ]
+    : [() => toggleLogInModal(), () => toggleSignUpModal()];
+
+  const allNavOptions: string[] = [
     routes.work.name,
     routes.groups.name,
     routes.help.name,
     ...profileOptions,
   ];
-  const allNavFunctions = [
+
+  const allNavFunctions: (() => void)[] = [
     () => navigate(routes.work.route),
     () => navigate(routes.groups.route),
     () => navigate(routes.help.route),
@@ -102,6 +124,18 @@ function Navbar() {
           optionsFunctions={allNavFunctions}
         />
       )}
+      <Modal
+        show={openLogInModal}
+        hide={toggleLogInModal}
+        content={<LogIn />}
+        {...modalProperties}
+      />
+      <Modal
+        show={openSignUpModal}
+        hide={toggleSignUpModal}
+        content={<SignUp />}
+        {...modalProperties}
+      />
     </div>
   );
 }

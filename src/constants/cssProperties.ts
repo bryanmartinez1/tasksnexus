@@ -27,3 +27,8 @@ export const imgButtonProperties = {
   margin: "0px 10px 0px 10px",
   padding: "0px 10px 0px 10px",
 };
+
+export const modalProperties = {
+  width: "75%",
+  height: "75%",
+};

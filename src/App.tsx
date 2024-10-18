@@ -3,11 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "src/components/navbar/Navbar";
 import Home from "./pages/home/Home";
-import { routes } from "src/components/appConstants";
-
-//  Auth Pages
-import LogIn from "src/pages/auth/LogIn";
-import SignUp from "src/pages/auth/SignUp";
+import { routes } from "src/constants/app";
 
 function App() {
   return (
@@ -26,8 +22,6 @@ function App() {
         <Route path={routes.profile.route} element={<Home />} />
         <Route path={routes.profile.routeParameter} element={<Home />} />
         <Route path={routes.settings.route} element={<Home />} />
-        <Route path={routes.signUp.route} element={<SignUp />} />
-        <Route path={routes.logIn.route} element={<LogIn />} />
       </Routes>
     </div>
   );
