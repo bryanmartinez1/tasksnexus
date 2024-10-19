@@ -28,7 +28,22 @@ export const imgButtonProperties = {
   padding: "0px 10px 0px 10px",
 };
 
-export const modalProperties = {
-  width: "75%",
-  height: "75%",
+export const authModalProperties = {
+  width: "50%",
+  height: "50%",
+  maxHeight: "350px",
+  maxWidth: "400px",
+  minHeight: "275px",
+  minWidth: "270px",
+};
+
+export const submitButton = {
+  fontSize: "16px",
+  backgroundColor: "#04AA6D",
+  hoverBackgroundColor: "#03915d",
+  border: "none",
+  margin: "10px 0px 0px 0px",
+  padding: "10px 10px 10px 10px",
+  height: "100%",
+  borderRadius: "5%",
 };

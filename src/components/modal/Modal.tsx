@@ -11,6 +11,11 @@ export interface ModalProps {
   content: ReactNode;
   width?: string;
   height?: string;
+  title?: string;
+  maxWidth?: string;
+  maxHeight?: string;
+  minWidth?: string;
+  minHeight?: string;
 }
 
 function Modal({
@@ -19,6 +24,11 @@ function Modal({
   content,
   width = "50%",
   height = "50%",
+  title = "",
+  maxWidth = "none",
+  maxHeight = "none",
+  minWidth = "none",
+  minHeight = "none",
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const handleClickOutside = (event: MouseEvent) => {
@@ -27,26 +37,23 @@ function Modal({
     }
   };
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      hide();
-    }
-  };
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyDown); // Add escape key listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
     };
   });
 
   if (!show) return null;
 
   return (
-    <div className="modalContent" style={{ width, height }} ref={modalRef}>
+    <div
+      className="modalContent"
+      style={{ width, height, maxWidth, maxHeight, minHeight, minWidth }}
+      ref={modalRef}
+    >
       <div className="modalCloseHeader">
+        <div className="modalTitle">{title}</div>
         <IMGButton
           src={Close}
           alt="Close"
@@ -55,7 +62,7 @@ function Modal({
           {...imgButtonProperties}
         />
       </div>
-      {content}
+      <div className="modalBody">{content}</div>
     </div>
   );
 }

@@ -1,0 +1,40 @@
+.authHolder {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.formHolder {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 85%;
+  height: 75%;
+  max-width: 400px;
+  justify-content: center;
+  gap: 5px;
+}
+
+.authFormButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.authInput {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.authLabel {
+  font-size: 16px;
+}

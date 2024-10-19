@@ -8,7 +8,7 @@ import {
   homeButtonProperties,
   wordButtonProperties,
   imgButtonProperties,
-  modalProperties,
+  authModalProperties,
 } from "src/constants/cssProperties";
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 import MenuIcon from "src/icons/menu.svg";
@@ -129,14 +129,16 @@ function Navbar() {
       <Modal
         show={openLogInModal}
         hide={toggleLogInModal}
-        content={<LogIn />}
-        {...modalProperties}
+        content={<LogIn goToSignUp={toggleSignUpModal} />}
+        title={auth.logIn.name}
+        {...authModalProperties}
       />
       <Modal
         show={openSignUpModal}
         hide={toggleSignUpModal}
         content={<SignUp />}
-        {...modalProperties}
+        title={auth.signUp.name}
+        {...authModalProperties}
       />
     </div>
   );

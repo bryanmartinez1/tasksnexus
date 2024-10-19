@@ -26,6 +26,18 @@ export const authFormLabels = {
   forgotPassword: "Forgot password?",
   termsAndConditions: "I agree to the Terms and Conditions",
   resendVerificationEmail: "Resend verification email",
-  loginWithGoogle: "Log in with Google",
-  loginWithFacebook: "Log in with Facebook",
+  logInFail: "Failed to log in, email or password is incorrect",
+};
+
+export const invalidPassword = {
+  name: "Invalid Password",
+  types: {
+    dontMatch: "Password does not match",
+    specialCharcater:
+      "Password requires atleast one special chacater like !, @, #, $",
+    number: "Password requires have one digit character (0-9)",
+    notEnoughCharacters: "Password requires atleast 8 characters",
+    upperCase: "Password requires atleast one uppercase chataer (A-Z)",
+    lowerCase: "Password requires atleast one lowercase chataer (a-z)",
+  },
 };

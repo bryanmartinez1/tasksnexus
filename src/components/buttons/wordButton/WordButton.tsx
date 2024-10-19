@@ -16,6 +16,7 @@ type WordButtonProps = {
   borderRadius?: string;
   isDropDown?: boolean;
   isWordDropDownOpen?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 function WordButton({
@@ -25,12 +26,13 @@ function WordButton({
   hoverBackgroundColor = "#DCDCDC",
   padding = "0",
   margin = "0",
-  border,
+  border = "none",
   width = "fit-content",
   height,
   borderRadius = "0%",
   isDropDown = false,
   isWordDropDownOpen = false,
+  type = "button",
   onClick,
 }: WordButtonProps) {
   const wordButtonStyle: React.CSSProperties = {
@@ -48,6 +50,7 @@ function WordButton({
 
   return (
     <button
+      type={type}
       style={wordButtonStyle}
       onMouseEnter={(e) =>
         (e.currentTarget.style.backgroundColor = hoverBackgroundColor)
