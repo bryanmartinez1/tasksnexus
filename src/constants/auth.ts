@@ -27,6 +27,12 @@ export const authFormLabels = {
   termsAndConditions: "I agree to the Terms and Conditions",
   resendVerificationEmail: "Resend verification email",
   logInFail: "Failed to log in, email or password is incorrect",
+  validAge: "User must be atleast 13 years old",
+};
+
+export const authPlaceHolders = {
+  email: "Enter email address here",
+  password: "Enter password here",
 };
 
 export const invalidPassword = {

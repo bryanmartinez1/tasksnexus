@@ -136,7 +136,7 @@ function Navbar() {
       <Modal
         show={openSignUpModal}
         hide={toggleSignUpModal}
-        content={<SignUp />}
+        content={<SignUp goToLogIn={toggleLogInModal} />}
         title={auth.signUp.name}
         {...authModalProperties}
       />

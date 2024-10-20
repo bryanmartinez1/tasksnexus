@@ -17,11 +17,17 @@ type LogInProps = {
 };
 
 function LogIn({ goToSignUp }: LogInProps) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
+  const [loginForm, setLoginForm] = useState<LogInForm>({
+    email: "",
+    password: "",
+  });
   const onSubmit = () => {
-    alert(`${email}\n${password}`);
+    alert(`${loginForm.email}\n${loginForm.password}`);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginForm((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -32,20 +38,18 @@ function LogIn({ goToSignUp }: LogInProps) {
           className="authInput"
           type="email"
           placeholder="Enter email address here"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          value={loginForm.email}
+          name="email"
+          onChange={handleChange}
         />
         <label className="authLabel">{authFormLabels.password}</label>
         <input
           className="authInput"
           type="password"
+          name="password"
           placeholder="Enter password here"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          value={loginForm.password}
+          onChange={handleChange}
         />
         <div className="authFormButton">
           <WordButton
@@ -53,6 +57,14 @@ function LogIn({ goToSignUp }: LogInProps) {
             onClick={() => goToSignUp()}
             {...wordButtonProperties}
             padding="5px 5px 5px 5px"
+            fontSize="14px"
+          />
+          <WordButton
+            text={authFormLabels.forgotPassword}
+            onClick={() => goToSignUp()}
+            {...wordButtonProperties}
+            padding="5px 5px 5px 5px"
+            fontSize="14px"
           />
           <WordButton
             text={authFormLabels.submit}
