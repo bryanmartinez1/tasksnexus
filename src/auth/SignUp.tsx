@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import WordButton from "src/components/buttons/wordButton/WordButton";
-import { auth, authFormLabels } from "src/constants/auth";
-import "src/pages/auth/auth.css";
+import { authConstants, authFormLabels } from "src/constants/auth";
+import "src/auth/auth.css";
 import {
   wordButtonProperties,
   submitButton,
 } from "src/constants/cssProperties";
+import { firebaseAuth, database } from "src/config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 
 interface SignUpForm {
   email: string;
-  password: string;
-  confirmPassword: string;
   firstName: string;
   lastName: string;
+}
+
+interface Passwords {
+  password: string;
+  confirmPassword: string;
 }
 
 type SignUpProps = {
@@ -22,19 +28,47 @@ type SignUpProps = {
 function SignUp({ goToLogIn }: SignUpProps) {
   const [signupForm, setSignupForm] = useState<SignUpForm>({
     email: "",
-    password: "",
-    confirmPassword: "",
     firstName: "",
     lastName: "",
   });
 
-  const onSubmit = () => {
-    alert(`${signupForm.email}\n${signupForm.firstName}`);
+  const [passwordForm, setPasswordForm] = useState<Passwords>({
+    password: "",
+    confirmPassword: "",
+  });
+
+  const userCollection = collection(database, "User");
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(
+        firebaseAuth,
+        signupForm.email,
+        passwordForm.password
+      );
+
+      const currentUser = firebaseAuth.currentUser;
+      console.log(currentUser);
+      if (currentUser) {
+        const userDoc = doc(database, "User", currentUser.uid);
+        await setDoc(userDoc, signupForm);
+      } else {
+        console.error("No user is currently signed in");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignupForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const passwordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPasswordForm((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -55,17 +89,17 @@ function SignUp({ goToLogIn }: SignUpProps) {
           type="password"
           name="password"
           placeholder="Enter password here"
-          value={signupForm.password}
-          onChange={handleChange}
+          value={passwordForm.password}
+          onChange={passwordChange}
         />
         <label className="authLabel">{authFormLabels.confirmPassword}</label>
         <input
           className="authInput"
           type="password"
           placeholder="Confirm password"
-          value={signupForm.confirmPassword}
+          value={passwordForm.confirmPassword}
           name="confirmPassword"
-          onChange={handleChange}
+          onChange={passwordChange}
         />
         <label className="authLabel">{authFormLabels.firstName}</label>
         <input

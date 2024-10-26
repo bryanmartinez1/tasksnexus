@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Group 1",
+    "description": "Test Group 1",
+    "memebersId": [1, 2, 3]
+  },
+  {
+    "id": 2,
+    "name": "Group 2",
+    "description": "Test Group 2",
+    "memebersId": [1, 2]
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "description": "Test Summary",
+    "datePosted": "2024-10-20T14:23:00Z",
+    "dateUpdated": "2024-10-20T14:23:00Z",
+    "type": "bug",
+    "status": "In Progress",
+    "priority": "High",
+    "assigneeID": 1,
+    "dueDate": "2024-10-20T14:23:00Z",
+    "labels": ["bug", "urugent"],
+    "comments": [
+      {
+        "author": "Jane Doe",
+        "message": "Please prioritize this issue.",
+        "created_at": "2024-10-20T15:30:00Z"
+      }
+    ],
+    "attachments": [
+      {
+        "file_name": "error_log.txt",
+        "url": "https://example.com/files/error_log.txt"
+      }
+    ]
+  }
+]

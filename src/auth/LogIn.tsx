@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WordButton from "src/components/buttons/wordButton/WordButton";
-import { auth, authFormLabels } from "src/constants/auth";
-import "src/pages/auth/auth.css";
+import { authConstants, authFormLabels } from "src/constants/auth";
+import "src/auth/auth.css";
 import {
   wordButtonProperties,
   submitButton,

@@ -13,12 +13,12 @@ import {
 import ImgDropDown from "src/components/dropDowns/imgDropDown/ImgDropDown";
 import MenuIcon from "src/icons/menu.svg";
 import { routes, sitename } from "src/constants/app";
-import { auth } from "src/constants/auth";
+import { authConstants } from "src/constants/auth";
 import Modal from "src/components/modal/Modal";
 
 import "./navbar.css";
-import LogIn from "src/pages/auth/LogIn";
-import SignUp from "src/pages/auth/SignUp";
+import LogIn from "src/auth/LogIn";
+import SignUp from "src/auth/SignUp";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ function Navbar() {
 
   const profileOptions = isLoggedIn
     ? [routes.profile.name, routes.settings.name, logOut.name]
-    : [auth.logIn.name, auth.signUp.name];
+    : [authConstants.logIn.name, authConstants.signUp.name];
   const profileFunctions = isLoggedIn
     ? [
         () => navigate(routes.profile.route),
@@ -130,14 +130,14 @@ function Navbar() {
         show={openLogInModal}
         hide={toggleLogInModal}
         content={<LogIn goToSignUp={toggleSignUpModal} />}
-        title={auth.logIn.name}
+        title={authConstants.logIn.name}
         {...authModalProperties}
       />
       <Modal
         show={openSignUpModal}
         hide={toggleSignUpModal}
         content={<SignUp goToLogIn={toggleLogInModal} />}
-        title={auth.signUp.name}
+        title={authConstants.signUp.name}
         {...authModalProperties}
       />
     </div>
