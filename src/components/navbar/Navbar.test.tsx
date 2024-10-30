@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react"; // Add 'act' here
+import { render, screen, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from "./Navbar";
 

@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "src/components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import { routes } from "src/constants/app";
+import Help from "src/pages/help/Help";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path={routes.work.routeParameter} element={<Home />} />
         <Route path={routes.groups.route} element={<Home />} />
         <Route path={routes.groups.routeParameter} element={<Home />} />
-        <Route path={routes.help.route} element={<Home />} />
+        <Route path={routes.help.route} element={<Help />} />
         <Route path={routes.help.routeParameter} element={<Home />} />
         <Route path={routes.profile.route} element={<Home />} />
         <Route path={routes.profile.routeParameter} element={<Home />} />

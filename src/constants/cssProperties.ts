@@ -1,7 +1,7 @@
 export const homeButtonProperties = {
   fontSize: "2rem",
   backgroundColor: "transparent",
-  hoverBackgroundColor: "transparent",
+  hoverBackgroundColor: "#DCDCDC",
   border: "none",
   padding: "5px",
   borderRadius: "5px",

@@ -4,6 +4,7 @@ import WordButton from "src/components/buttons/wordButton/WordButton";
 import IMGButton from "src/components/buttons/imgButton/ImgButton";
 import profileIcon from "src/icons/user.svg";
 import helpIcon from "src/icons/help-circle.svg";
+import layoutIcon from "src/icons/layout.svg";
 import {
   homeButtonProperties,
   wordButtonProperties,
@@ -19,12 +20,13 @@ import Modal from "src/components/modal/Modal";
 import "./navbar.css";
 import LogIn from "src/auth/LogIn";
 import SignUp from "src/auth/SignUp";
+import { User } from "src/config/firebaseTypes";
 
 function Navbar() {
   const navigate = useNavigate();
   const [navBarWidth, setNavbarWidth] = useState<number>(window.innerWidth);
   // eslint-disable-next-line
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<User>(null);
   const [openLogInModal, setLogInModal] = useState<boolean>(false);
   const [openSignUpModal, setSignUpModal] = useState<boolean>(false);
 
