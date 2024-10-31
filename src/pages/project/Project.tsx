@@ -5,8 +5,8 @@ type ProjectProps = {
   name: string;
 };
 
-function Project({ name }: ProjectProps) {
-  return <div className="project-container">{name}</div>;
+function Project() {
+  return <div className="project-container"></div>;
 }
 
 export default Project;

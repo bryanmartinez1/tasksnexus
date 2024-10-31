@@ -1,8 +1,8 @@
 import React from "react";
-import "./help.css";
+import "./work.css";
 
-function Help() {
-  return <div className="help-page">Help</div>;
+function Work() {
+  return <div className="work-page">Work</div>;
 }
 
-export default Help;
+export default Work;

@@ -1,3 +1,10 @@
+export interface isLoggedIn {
+  id: string;
+  isAuthenticated: boolean;
+}
+
+export type AuthStatus = isLoggedIn | null;
+
 export interface LoggedInUser {
   id: string;
   firstName: string;
